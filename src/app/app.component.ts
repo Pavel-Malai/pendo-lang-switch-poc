@@ -1,5 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import { combineLatest, filter, Subject, takeUntil } from 'rxjs';
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
@@ -14,13 +16,34 @@ export class AppComponent {
   pendoApiKey: string = '8303c8c6-d666-43eb-55ac-461d148b2fad';
   private unsubscribe$: Subject<void> = new Subject();
 
+  cultures: Culture[] = [
+    { value: 'en-GB', name: 'English' },
+    { value: 'de-DE', name: 'German' },
+    { value: 'es-ES', name: 'Spanish' }
+  ];
+  culturesFormControl = new FormControl();
+
   constructor(
-    @Inject(DOCUMENT) private doc: Document
+    @Inject(DOCUMENT) private doc: Document,
+    private cookieService: CookieService
   ) {
   }
 
   public ngOnInit(): void {
     this.addPendoTag(this.pendoApiKey);
+
+    this.culturesFormControl.valueChanges.subscribe(s => {
+      this.setCultureCookie(s);
+      console.log(`The selected value is ${s}`);
+    });
+  }
+
+
+  setCultureCookie(value: string) {
+
+    //this.cookieService.set('_culture', value, expiration.getTime(), '/', '.2.azurestaticapps.net', true, )
+    this.cookieService.set('_culture', value, 31536000, '/', '.nice-ground-09a833310.2.azurestaticapps.net/', true)
+    this.cookieService.set('_culture', value, 31536000, '/', 'localhost')
   }
 
   public ngAfterViewInit(): void {
@@ -123,4 +146,9 @@ export class AppComponent {
 
     this.doc.head.appendChild(pendoTag);
   }
+}
+
+interface Culture {
+  value: string;
+  name: string;
 }
