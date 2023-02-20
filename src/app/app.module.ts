@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { CookieService } from 'ngx-cookie-service';
+import { CultureService } from './services/culture.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { CookieService } from 'ngx-cookie-service';
     MaterialModule
     
   ],
-  providers: [CookieService],
+  providers: [CookieService, CultureService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

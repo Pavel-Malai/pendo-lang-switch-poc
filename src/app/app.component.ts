@@ -3,6 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { combineLatest, filter, Subject, takeUntil } from 'rxjs';
+import { CultureService } from './services/culture.service';
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 declare let pendo: any;
@@ -25,7 +26,8 @@ export class AppComponent {
 
   constructor(
     @Inject(DOCUMENT) private doc: Document,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private cultureService: CultureService
   ) {
   }
 
@@ -86,7 +88,7 @@ export class AppComponent {
           id: 'user.id',
           email: 'user.userDetails?.email',
           full_name: '`${user.userDetails?.firstName} ${user.userDetails?.surname}`',
-          language: 'en_GB'
+          language: 'de-DE'
         },
         account: {
           id: 'account.id',
