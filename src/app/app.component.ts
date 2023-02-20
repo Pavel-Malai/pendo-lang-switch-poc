@@ -86,7 +86,7 @@ export class AppComponent {
           id: 'user.id',
           email: 'user.userDetails?.email',
           full_name: '`${user.userDetails?.firstName} ${user.userDetails?.surname}`',
-          role: 'account.userRole',
+          language: 'en_GB'
         },
         account: {
           id: 'account.id',
