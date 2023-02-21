@@ -2,7 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { combineLatest, filter, Subject, takeUntil } from 'rxjs';
+import {Subject } from 'rxjs';
 import { CultureService } from './services/culture.service';
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
@@ -46,7 +46,7 @@ export class AppComponent {
   setCultureCookie(value: string) {
 
     //this.cookieService.set('_culture', value, expiration.getTime(), '/', '.2.azurestaticapps.net', true, )
-    this.cookieService.set('_culture', value, 31536000, '/', '.nice-ground-09a833310.2.azurestaticapps.net/', true)
+    this.cookieService.set('_culture', value, 31536000, '/', 'nice-ground-09a833310.2.azurestaticapps.net/', true)
     this.cookieService.set('_culture', value, 31536000, '/', 'localhost')
   }
 
