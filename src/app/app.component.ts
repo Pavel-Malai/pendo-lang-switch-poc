@@ -88,13 +88,12 @@ export class AppComponent {
           id: 'user.id',
           email: 'user.userDetails?.email',
           full_name: '`${user.userDetails?.firstName} ${user.userDetails?.surname}`',
-          language: 'de-DE'
+          language: 'de'
         },
         account: {
           id: 'account.id',
           reference: 'account.reference',
           type: 'account.type',
-          language: 'de-DE'
         },
       };
 
