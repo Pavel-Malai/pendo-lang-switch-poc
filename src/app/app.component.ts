@@ -94,6 +94,7 @@ export class AppComponent {
           id: 'account.id',
           reference: 'account.reference',
           type: 'account.type',
+          language: 'de-DE'
         },
       };
 
