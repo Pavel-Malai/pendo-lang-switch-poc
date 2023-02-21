@@ -1,7 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { CookieService } from 'ngx-cookie-service';
 import {Subject } from 'rxjs';
 import { CultureService } from './services/culture.service';
 
@@ -26,7 +25,6 @@ export class AppComponent {
 
   constructor(
     @Inject(DOCUMENT) private doc: Document,
-    private cookieService: CookieService,
     private cultureService: CultureService
   ) {
   }
@@ -34,19 +32,17 @@ export class AppComponent {
   public ngOnInit(): void {
     this.addPendoTag(this.pendoApiKey);
 
+    this.culturesFormControl.setValue(this.cultureService.culture);
+
     this.culturesFormControl.valueChanges.subscribe(s => {
-      this.setCultureCookie(s);
+      console.log(`Culture value changed in dropdon: ${s}`);
       this.cultureService.culture = s;
-      console.log(`The selected value is ${s}`);
+      setTimeout(() => {
+        console.log('update options, current culture: ' + this.cultureService.culture);
+        pendo.identify();
+        pendo.updateOptions();
+      }, 1000);
     });
-
-  }
-
-
-  setCultureCookie(value: string) {
-    this.cookieService.set('_culture', value, 31536000, '/', '.2.azurestaticapps.net', true, )
-    this.cookieService.set('_culture', value, 31536000, '/', '.nice-ground-09a833310.2.azurestaticapps.net', true)
-    this.cookieService.set('_culture', value, 31536000, '/', 'localhost')
   }
 
   public ngAfterViewInit(): void {
