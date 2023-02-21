@@ -45,7 +45,7 @@ export class AppComponent {
 
   setCultureCookie(value: string) {
     this.cookieService.set('_culture', value, 31536000, '/', '.2.azurestaticapps.net', true, )
-    this.cookieService.set('_culture', value, 31536000, '/', '.nice-ground-09a833310.2.azurestaticapps.net/', true)
+    this.cookieService.set('_culture', value, 31536000, '/', '.nice-ground-09a833310.2.azurestaticapps.net', true)
     this.cookieService.set('_culture', value, 31536000, '/', 'localhost')
   }
 
