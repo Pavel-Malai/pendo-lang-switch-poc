@@ -15,7 +15,7 @@ export class AppComponent {
   title = 'pendo-lang-switch-poc';
   pendoApiKey: string = '8303c8c6-d666-43eb-55ac-461d148b2fad';
   userId: string = 'c9efe64a-4fa8-4a39-ac44-ea0c86d52ca3';
-  visitorId: string = uuid();
+  accountId: string = uuid();
 
   cultures: Culture[] = [
     { value: 'en-GB', name: 'English' },
@@ -38,11 +38,15 @@ export class AppComponent {
     this.culturesFormControl.valueChanges.subscribe(s => {
       console.log(`Culture value changed in dropdon: ${s}`);
       this.cultureService.culture = s;
-      setTimeout(() => {
-        console.log('update options, current culture: ' + this.cultureService.culture);
-        pendo.initialize();
-        pendo.updateOptions();
-      }, 1000);
+      
+      location.reload();
+      
+      // setTimeout(() => {
+      //   console.log('update options, current culture: ' + this.cultureService.culture);
+      //   pendo.initialize();
+      //   pendo.updateOptions();
+      //   pendo.loadGuides()
+      // }, 1000);
     });
   }
 
@@ -83,13 +87,13 @@ export class AppComponent {
     if (this.pendoApiKey) {
       const pendoConfig = {
         visitor: {
-          id: this.visitorId,
+          id: this.userId,
           email: 'user.userDetails?.email',
           full_name: '`${user.userDetails?.firstName} ${user.userDetails?.surname}`',
           custom_language: this.cultureService.culture
         },
         account: {
-          id: this.userId,
+          id: this.accountId,
           reference: 'account.reference',
           type: 'account.type',
         },
