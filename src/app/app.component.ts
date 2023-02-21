@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {Subject } from 'rxjs';
+import { v4 as uuid } from 'uuid';
 import { CultureService } from './services/culture.service';
 
 /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
@@ -14,7 +14,8 @@ declare let pendo: any;
 export class AppComponent {
   title = 'pendo-lang-switch-poc';
   pendoApiKey: string = '8303c8c6-d666-43eb-55ac-461d148b2fad';
-  private unsubscribe$: Subject<void> = new Subject();
+  userId: string = 'c9efe64a-4fa8-4a39-ac44-ea0c86d52ca3';
+  visitorId: string = uuid();
 
   cultures: Culture[] = [
     { value: 'en-GB', name: 'English' },
@@ -82,13 +83,13 @@ export class AppComponent {
     if (this.pendoApiKey) {
       const pendoConfig = {
         visitor: {
-          id: 'user.id',
+          id: this.visitorId,
           email: 'user.userDetails?.email',
           full_name: '`${user.userDetails?.firstName} ${user.userDetails?.surname}`',
           custom_language: this.cultureService.culture
         },
         account: {
-          id: 'account.id',
+          id: this.userId,
           reference: 'account.reference',
           type: 'account.type',
         },
