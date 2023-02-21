@@ -29,7 +29,7 @@ export class CultureService {
 
     setCultureCookie(value: string) {
         console.log('set cookie:' + value);
-        this.cookieService.set('_culture', value, 31536000, '/', '.2.azurestaticapps.net', true,)
+        //this.cookieService.set('_culture', value, 31536000, '/', '.2.azurestaticapps.net', true,)
         this.cookieService.set('_culture', value, 31536000, '/', '.nice-ground-09a833310.2.azurestaticapps.net', true)
         this.cookieService.set('_culture', value, 31536000, '/', 'localhost')
     }
