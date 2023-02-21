@@ -39,7 +39,7 @@ export class AppComponent {
       this.cultureService.culture = s;
       setTimeout(() => {
         console.log('update options, current culture: ' + this.cultureService.culture);
-        pendo.identify();
+        pendo.initialize();
         pendo.updateOptions();
       }, 1000);
     });
