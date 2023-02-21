@@ -36,8 +36,10 @@ export class AppComponent {
 
     this.culturesFormControl.valueChanges.subscribe(s => {
       this.setCultureCookie(s);
+      this.cultureService.culture = s;
       console.log(`The selected value is ${s}`);
     });
+
   }
 
 
@@ -88,7 +90,7 @@ export class AppComponent {
           id: 'user.id',
           email: 'user.userDetails?.email',
           full_name: '`${user.userDetails?.firstName} ${user.userDetails?.surname}`',
-          custom_language: 'de-DE'
+          custom_language: this.cultureService.culture
         },
         account: {
           id: 'account.id',
