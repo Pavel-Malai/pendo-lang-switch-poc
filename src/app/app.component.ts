@@ -51,39 +51,6 @@ export class AppComponent {
   }
 
   public ngAfterViewInit(): void {
-
-    // combineLatest([
-    //   this.userService.user$.pipe(filter((user: User) => !!user)),
-    //   this.accountService.selectedAccount$,
-    // ])
-    //   .pipe(takeUntil(this.unsubscribe$))
-    //   .subscribe(([user, account]: [User, UserAccount]) => {
-    //     if (this.pendoApiKey) {
-    //       const pendoConfig = {
-    //         visitor: {
-    //           id: user.id,
-    //           email: user.userDetails?.email,
-    //           full_name: `${user.userDetails?.firstName} ${user.userDetails?.surname}`,
-    //           role: account.userRole,
-    //         },
-    //         account: {
-    //           id: account.id,
-    //           reference: account.reference,
-    //           type: account.type,
-    //         },
-    //       };
-
-    //       if (!pendo?.isReady) {
-    //         setTimeout(() => this.installPendo(pendoConfig), 1000);
-
-    //         return;
-    //       }
-
-    //       this.installPendo(pendoConfig);
-    //     }
-    //   });
-
-
     if (this.pendoApiKey) {
       const pendoConfig = {
         visitor: {
