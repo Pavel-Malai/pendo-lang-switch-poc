@@ -16,6 +16,8 @@ export class AppComponent {
   pendoApiKey: string = '8303c8c6-d666-43eb-55ac-461d148b2fad';
   userId: string = 'c9efe64a-4fa8-4a39-ac44-ea0c86d52ca3';
   accountId: string = uuid();
+  userName:string = 'test';
+  userEmail:string = 'test@gmail';
 
   cultures: Culture[] = [
     { value: 'en-GB', name: 'English' },
@@ -55,8 +57,8 @@ export class AppComponent {
       const pendoConfig = {
         visitor: {
           id: this.userId,
-          email: 'user.userDetails?.email',
-          full_name: '`${user.userDetails?.firstName} ${user.userDetails?.surname}`',
+          email: this.userEmail,
+          full_name: this.userName,
           custom_language: this.cultureService.culture
         },
         account: {
